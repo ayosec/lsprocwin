@@ -3,7 +3,9 @@ name = "lsprocwin"
 version = "0.1.0"
 authors = ["ayosec@gmail.com"]
 edition = "2018"
+description = "Find X11 windows using the command line of the processes."
 license = "Apache-2.0"
+readme = "README.md"
 
 [dependencies]
 memchr = "2.3.4"
