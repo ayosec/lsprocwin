@@ -10,3 +10,10 @@ readme = "README.md"
 [dependencies]
 memchr = "2.3.4"
 xcb = "0.9.0"
+
+[package.metadata.deb]
+extended-description = "Find X11 windows using the command line of the processes."
+assets = [
+  [ "target/release/lsprocwin", "usr/bin/", "755" ],
+  [ "bin/selectprocwin", "usr/bin/", "755" ],
+]
