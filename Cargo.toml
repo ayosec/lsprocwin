@@ -6,3 +6,4 @@ edition = "2018"
 
 [dependencies]
 memchr = "2.3.4"
+xcb = "0.9.0"

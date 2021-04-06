@@ -4,7 +4,7 @@ use std::{fs, io, str};
 
 #[derive(Debug)]
 pub struct Process {
-    pub window: u32,
+    pub window: xcb::Window,
     pub cmdline: String,
 }
 
@@ -52,7 +52,7 @@ fn get_cmdline<P: AsRef<Path>>(path: P) -> io::Result<String> {
 
     // Replace NUL with spaces.
     for byte in &mut content[..] {
-        if *byte == 0 {
+        if *byte < b' ' {
             *byte = b' ';
         }
     }
