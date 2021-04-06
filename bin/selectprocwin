@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+SELECTION=$(lsprocwin | rofi -dmenu -dpi 200 -no-custom)
+WINDOW=${SELECTION/ */}
+
+if [ -n "$WINDOW" ]
+then
+  xdotool windowactivate "$WINDOW"
+fi
