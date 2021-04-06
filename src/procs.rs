@@ -8,7 +8,9 @@ pub struct Process {
     pub cmdline: String,
 }
 
-/// Find all processes with a WINDOWID variable.
+/// Find all processes with a `WINDOWID` variable.
+///
+/// `/bin/bash` processes are ignored.
 pub fn find() -> Result<Vec<Process>, Box<dyn Error>> {
     let mut procs = Vec::new();
 
@@ -20,7 +22,10 @@ pub fn find() -> Result<Vec<Process>, Box<dyn Error>> {
             for index in memchr::memchr_iter(0, &environ) {
                 if let Some(window) = extract_windowid(&environ[last..index]) {
                     if let Ok(cmdline) = get_cmdline(&base) {
-                        procs.push(Process { window, cmdline });
+                        if cmdline != "/bin/bash" {
+                            procs.push(Process { window, cmdline });
+                        }
+
                         break;
                     }
                 }
